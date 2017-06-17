@@ -1,10 +1,7 @@
-from flask import Flask
+from flask import Flask, request
+
 app = Flask(__name__)
 app.config['DEBUG'] = True
-
-@app.route("/")
-def index():
-    return form
 
 form = """
 <!DOCTYPE html>
@@ -28,11 +25,18 @@ form = """
         </style>
     </head>
     <body>
-        <form action="">
-            <input type="text" name="rot"> </input>
-            <textarea name="text"> </input>
+        <form action="/" method="post">
+            <label>Rotate by:</label>
+            <input type="text" name="rot" value="0"></input>
+            <input type="textarea" name="text"></input>
+            <input type="submit" name="Encrypt"></input>
         </form>
     </body>
 </html>
 """
+
+@app.route("/")
+def index():
+    return form
+
 app.run()
